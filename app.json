@@ -1,0 +1,17 @@
+{
+  "name": "fitrest",
+  "displayName": "fitrest",
+  "expo": {
+    "name": "fitrest",
+    "slug": "fitrest",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
