@@ -62,3 +62,4 @@ buck-out/
 .expo/*
 bin
 artifacts/ios.sim.release.2020-05-08 13-08-06Z
+e2e/coverage
