@@ -12,7 +12,7 @@
     "prettier": "prettier --write '*.js'",
     "format-code": "yarn run prettier && yarn run lint:fix",
     "precommit": "lint-staged",
-    "e2e:ios": "detox test --configuration ios.sim.release --debug-synchronization",
+    "e2e:ios": "detox test --configuration ios.sim.debug --debug-synchronization",
     "e2e:ios-ci": "detox test --configuration ios.sim.release --workers 3 --debug-synchronization --take-screenshots all --record-logs all --record-timeline all -- --coverage",
     "build:ios": "detox build --configuration ios.sim.release"
   },
@@ -67,6 +67,12 @@
         "build": "xcodebuild -workspace ios/fitrest.xcworkspace -configuration Debug -sdk iphonesimulator -scheme fitrest -derivedDataPath ios/build",
         "type": "ios.simulator",
         "name": "iPhone X"
+      },
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/fitrest.app",
+        "build": "xcodebuild -project ios/fitrest.xcodeproj -scheme Fitrest -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build -UseNewBuildSystem=NO",
+        "type": "ios.simulator",
+        "name": "iPhone 8"
       }
     }
   }
