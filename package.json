@@ -12,7 +12,7 @@
     "prettier": "prettier --write '*.js'",
     "format-code": "yarn run prettier && yarn run lint:fix",
     "precommit": "lint-staged",
-    "e2e:ios": "detox test --configuration ios.sim.debug --debug-synchronization",
+    "e2e:ios": "detox test --configuration ios.sim.release --debug-synchronization",
     "e2e:ios-ci": "detox test --configuration ios.sim.release --workers 3 --debug-synchronization --take-screenshots all --record-logs all --record-timeline all -- --coverage",
     "build:ios": "detox build --configuration ios.sim.release"
   },
