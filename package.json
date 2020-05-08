@@ -5,13 +5,16 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "test": "node node_modules/jest/bin/jest.js",
+    "test": "node_modules/.bin/jest __tests__/*.spec.js",
     "test-watch": "node node_modules/jest/bin/jest.js --watch",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --write '*.js'",
     "format-code": "yarn run prettier && yarn run lint:fix",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "e2e:ios": "detox test --configuration ios.sim.release --debug-synchronization",
+    "e2e:ios-ci": "detox test --configuration ios.sim.release --workers 3 --debug-synchronization --take-screenshots all --record-logs all --record-timeline all -- --coverage",
+    "build:ios": "detox build --configuration ios.sim.release"
   },
   "lint-staged": {
     "*.js": [
@@ -37,19 +40,34 @@
     "@types/react": "~16.9.23",
     "@types/react-native": "~0.61.23",
     "babel-preset-expo": "~8.1.0",
+    "detox": "^16.4.1",
+    "detox-expo-helpers": "^0.6.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "expo-detox-hook": "^1.0.10",
     "husky": "^4.2.5",
     "jest-expo": "~37.0.0",
     "lint-staged": "^10.2.2",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "react-native-testing-library": "^1.13.2"
   },
   "jest": {
     "preset": "react-native"
   },
-  "private": true
+  "private": true,
+  "detox": {
+    "test-runner": "jest",
+    "configurations": {
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/fitrest.app",
+        "build": "xcodebuild -workspace ios/fitrest.xcworkspace -configuration Debug -sdk iphonesimulator -scheme fitrest -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      }
+    }
+  }
 }

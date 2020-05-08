@@ -60,3 +60,5 @@ buck-out/
 
 # Expo
 .expo/*
+bin
+artifacts/ios.sim.release.2020-05-08 13-08-06Z

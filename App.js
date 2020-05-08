@@ -1,19 +1,28 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View } from "react-native";
+import MessageList from "./MessageList";
+import NewMessageForm from "./NewMessageForm";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
+    padding: 50,
     justifyContent: "center",
   },
 });
 
 export default function App() {
+  [messages, setMessages] = useState([]);
+
+  function handleSend(newMessage) {
+    setMessages([...messages, newMessage]);
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <NewMessageForm onSend={handleSend} />
+      <MessageList data={messages} />
     </View>
   );
 }
